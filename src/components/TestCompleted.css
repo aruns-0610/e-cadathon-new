@@ -1,0 +1,84 @@
+.test-completed-container {
+    padding: 4rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+}
+
+* {
+    margin: 0px;
+}
+
+.completed-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 3rem;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.success-icon {
+    color: #10b981;
+    /* Emerald 500 */
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.3));
+}
+
+.disqualified-icon {
+    color: #ef4444;
+    /* Red 500 */
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.3));
+}
+
+.disqualified-card {
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.completed-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+}
+
+.completed-message {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+}
+
+.completed-info {
+    margin-top: 0.5rem;
+    padding-top: 0;
+    /* border-top: 1px solid var(--color-border); Removed as per request */
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.highlight-text {
+    color: var(--color-primary);
+    font-weight: 500;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
