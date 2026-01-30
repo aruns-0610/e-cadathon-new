@@ -508,10 +508,11 @@ Consider the following statements, and select which combination explains the flu
 
     const handleSubmit = async (forceDisqualified = false) => {
         setIsSubmitting(true);
+        // Define outside try block to be accessible in setTimeout
+        const finalDisqualifiedStatus = forceDisqualified || isDisqualified;
 
         try {
             const finalScore = calculateScore();
-            const finalDisqualifiedStatus = forceDisqualified || isDisqualified;
 
             // Insert test results to Supabase
             const { error } = await supabase
@@ -531,7 +532,7 @@ Consider the following statements, and select which combination explains the flu
         }
 
         // Exit fullscreen
-        if (document.exitFullscreen) {
+        if (document.exitFullscreen && document.fullscreenElement) {
             document.exitFullscreen().catch(err => console.log(err));
         }
 
