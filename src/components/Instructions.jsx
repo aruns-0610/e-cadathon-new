@@ -64,7 +64,7 @@ const Instructions = ({ onStartTest, user }) => {
                     ) : (
 
                         <div className="login-prompt">
-                            <p> <AlertTriangle className="text-yellow" size={20} />You can Start Your test on 31st January 2026 anytime from 6:00 PM to 10:00 PM.</p>
+                            <p> <div style={{ marginTop: "3px" }}><AlertTriangle className="text-yellow" size={20} /></div> You can Start Your test on 31st January 2026 anytime from 6:00 PM to 10:00 PM.</p>
                         </div>
 
                     )}
