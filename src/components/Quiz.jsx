@@ -7,20 +7,24 @@ function Quiz({ onQuizComplete, user }) {
     const questions = [
         {
             type: "McQ",
-            question: "Which of the following components is used primarily for storing electric charge?",
-            options: ["Resistor", "Inductor", "Capacitor", "Diode"],
+            question: `A battery with internal resistance (Ri) is connected across a load resistor (RL). 
+            The terminal voltage measured under load drops significantly. Under what condition(s), the stated scenario occurs?`,
+            options: ["The load resistance (RL) is much greater than the internal resistance (Ri)", "The load resistance (RL) is much less than the internal resistance (Ri) of the battery",
+                "The load resistance (RL) is equal to the internal resistance (Ri) of the battery", "The current drawn from the battery decreases due to externally connected resistance"],
             correctAnswer: "Capacitor",
             id: 1
         },
         {
             type: "McQ",
-            question: `Which of the following statements are TRUE regarding KiCad?
-
-1) KiCad allows generation of a netlist from a schematic.
-2) Footprint assignment must be done before PCB layout.
-3) KiCad does not support 3D visualization of components.
-4) ERC helps detect connection issues in the schematic.`,
-            options: ["1, 2, and 4 only", "1 and 3 only", "2 and 3 only", "All statements 1–4"],
+            question: `2)	Consider the following equation:
+Vo = -(0.0001d(X1)/dt + 2X2), where: X1 = sin(1000πt), X2 = 1.5sin(1000πt)
+To obtain the above output voltage expression using op-amps, which of the following configuration(s) can be employed?
+(i)	2 integrators, 1 difference amplifier, 1 inverting amplifiers
+(ii)	1 differentiator, 1 summing amplifier, 2 inverting amplifiers
+(iii)	1 differentiator, 1 weighted summing amplifier, 1 inverting amplifier
+(iv)	1 differentiator, 1 weighted summing amplifier, 1 non-inverting amplifier
+`,
+            options: ["(i) and (iii) only", "only (ii)", "only (iv)", "(ii) and (iii) only", "None of these"],
             correctAnswer: "1, 2, and 4 only",
             id: 2
         },
@@ -207,7 +211,7 @@ Reason (R): It protects the driving transistor from high voltage spikes when the
             }
         });
 
-        return Math.max(0, score); // Ensure score is not negative
+        return score; // Ensure score is not negative
     };
 
     const handleSubmit = async (forceDisqualified = false) => {
@@ -245,7 +249,7 @@ Reason (R): It protects the driving transistor from high voltage spikes when the
         }, 2000);
     };
 
-    if (isSubmitting) {
+    if (isSubmitting && !isDisqualified) {
         return (
             <div className="submission-loading">
                 <div className="submission-content">
@@ -255,6 +259,17 @@ Reason (R): It protects the driving transistor from high voltage spikes when the
                 </div>
             </div>
         );
+    }
+    else if (isSubmitting) {
+        return (
+            <div className="submission-loading">
+                <div className="submission-content">
+                    <AlertTriangle size={64} className="submit-failure-icon" />
+                    <h2>You are disqualified</h2>
+                    <p>Redirecting to home...</p>
+                </div>
+            </div>
+        )
     }
 
     const handleReturnFullscreen = () => {
