@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Menu, X, ChevronLeft, ChevronRight, Clock, CheckCircle, AlertTriangle } from 'lucide-react';
 import { supabase } from '../supabase';
 import './Quiz.css';
+import question3 from "../assents/question-3.png"
 
 function Quiz({ onQuizComplete, user }) {
     const questions = [
@@ -16,7 +17,7 @@ function Quiz({ onQuizComplete, user }) {
         },
         {
             type: "McQ",
-            question: `2)	Consider the following equation:
+            question: `Consider the following equation:
 Vo = -(0.0001d(X1)/dt + 2X2), where: X1 = sin(1000πt), X2 = 1.5sin(1000πt)
 To obtain the above output voltage expression using op-amps, which of the following configuration(s) can be employed?
 (i)	2 integrators, 1 difference amplifier, 1 inverting amplifiers
@@ -30,47 +31,70 @@ To obtain the above output voltage expression using op-amps, which of the follow
         },
         {
             type: "McQ",
-            question: `A student designs a PCB where the ground trace is extremely thin and routed across the entire board before reaching the load.
-What is the most likely issue this design will cause?`,
-            options: ["Higher voltage drop and heating along the ground path", "Signal distortion due to optical interference",
-                "Automatic short circuit to VCC", "Board will not pass ERC"],
+            question: `Shown below is the timing diagram of a D-Flip flop
+            Which of the following explanation is the most reasonable one for a temporary glitch observed in the output (Q) of the flip flop?
+(i)	Setup time violation
+(ii)	Hold time violation
+(iii)	Propagation delay mismatch in combinational logic feeding the input (D)
+(iv)	Faulty clock buffer causing duty cycle distortion
+`,
+            options: ["only (i) and (iii)", "only (ii) and (iii)",
+                "(i), (ii), (iii), and (iv)", "None of the above"],
             correctAnswer: "Higher voltage drop and heating along the ground path",
+            image: question3,
             id: 3
         },
         {
             type: "McQ",
-            question: "In a common-emitter BJT amplifier, increasing the emitter resistor RE generally:",
-            options: ["Increases gain and decreases stability", "Decreases gain and increases stability",
-                "Increases both gain and stability", "Has no effect on gain"],
+            question: "Consider the following scenario: Which of the following reason(s) best explain(s) the above cause?",
+            options: ["Diode is damaged", "Source supply is unstable",
+                "Forward voltage of diode changes rapidly with temperature", "High resistor value makes circuit sensitive to noise pickup"],
             correctAnswer: "Decreases gain and increases stability",
             id: 4
         },
         {
             type: "McQ",
-            question: "In a typical KiCad workflow, which of the following is the correct order?",
-            options: ["PCB → Schematic → BOM", "Schematic → Footprint Assignment → PCB Layout",
-                "Footprint Assignment → Simulation → Schematic", "Gerber Generation → Routing → Simulation"],
+            question: `Consider the following description of a LED driver circuit: An LED → resistor → 9V battery
+LED glows bright initially but becomes dim after 5 seconds even though all component values are fixed. Justify the cause of this event.
+`,
+            options: ["Battery internal resistance increasing with load",
+                "LED forward voltage decreasing", "Ambient light interference", "Resistor heating and increase in its value"],
             correctAnswer: "Schematic → Footprint Assignment → PCB Layout",
             id: 5
         },
         {
-            type: "Numerical",
-            question: "A 12 V battery is connected across a 6 Ω resistor. The current flowing through the resistor is:",
+            type: "McQ",
+            question: `Assertion (A): In a half-bridge inverter, the PCB layout must minimize the loop area around the switching MOSFETs.
+Reason (R): Large loop area increases the probability of shoot-through events.
+`,
+            options: ["Both A and R are true, and R explains A", "Both A and R are true, but R not explains A",
+                "A is true, but R is false", "Both A and R are false"
+            ]
             correctAnswer: 2,
             id: 6
         },
         {
             type: "McQ",
-            question: `Assertion (A): A flyback diode is used across a relay coil in driver circuits.
-Reason (R): It protects the driving transistor from high voltage spikes when the coil is switched off.`,
-            options: ["A and R are true, and R is the correct explanation of A", "A and R are true, but R is not the correct explanation",
-                "A is true, R is false", "A is false, R is true"],
+            question: `7)	You are measuring current using a Hall-effect sensor on a PCB. The output shows slow drifting over time. Choose the best explanation set:
+(i)	Magnetic hysteresis in core material
+(ii)	Temperature drift in the amplifier inside the sensor
+(iii)	Trace carrying measurement signal routed near noisy switching node
+(iv)	Sensor saturates only at high-frequency noise peaks
+`,
+            options: ["(i) and (iii) only", "(ii) and (iv) only",
+                "(i), (ii) and (iii) only", "(iii) only"],
             correctAnswer: "A and R are true, and R is the correct explanation of A",
             id: 7
         },
         {
-            type: "Numerical",
-            question: "A 10 µF capacitor is connected to a 5 V DC supply through a 1 kΩ resistor. What is the time constant (τ)?",
+            type: "McQ",
+            question: `You are measuring current using a Hall-effect sensor on a PCB. The output shows slow drifting over time. Choose the best explanation set:
+(i)	Magnetic hysteresis in core material
+(ii)	Temperature drift in the amplifier inside the sensor
+(iii)	Trace carrying measurement signal routed near noisy switching node
+(iv)	Sensor saturates only at high-frequency noise peaks
+`,
+            options: ["only (i) and (ii)", "only (ii) and (iv)"]
             correctAnswer: 0.01,
             id: 8
         },

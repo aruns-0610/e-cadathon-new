@@ -55,7 +55,7 @@ const Instructions = ({ onStartTest, user }) => {
                 </div>
 
                 <div className="action-area">
-                    {/* {user ? (
+                    {user ? (
                         <button className="primary start-btn" onClick={onStartTest}>
                             <Play size={20} />
                             <span>Start Test</span>
@@ -63,12 +63,12 @@ const Instructions = ({ onStartTest, user }) => {
                         // <div></div>
                     ) : (
 
-                       
-                    )} */}
-                    <div className="login-prompt">
-                        <AlertTriangle className="text-yellow" size={20} />
-                        <p>You can Start Your test on 31st January 2026 anytime from 6:00 PM to 10:00 PM.</p>
-                    </div>
+                        <div className="login-prompt">
+                            <AlertTriangle className="text-yellow" size={20} />
+                            <p>You can Start Your test on 31st January 2026 anytime from 6:00 PM to 10:00 PM.</p>
+                        </div>
+
+                    )}
 
 
                 </div>
