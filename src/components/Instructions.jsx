@@ -14,11 +14,11 @@ const Instructions = ({ onStartTest, user }) => {
                 <div className="rules-grid">
                     <div className="rule-item">
                         <span className="bullet-point">•</span>
-                        <p>Create an account and login (use the mail Id that you have provided on unstop).</p>
+                        <p>Create an Account and Login (mail Id given in Unstop).</p>
                     </div>
                     <div className="rule-item">
                         <span className="bullet-point">•</span>
-                        <p>Test should be taken in fullscreen mode only.</p>
+                        <p>Test should be attempted in fullscreen mode only.</p>
                     </div>
                     <div className="rule-item">
                         <span className="bullet-point">•</span>
@@ -26,7 +26,7 @@ const Instructions = ({ onStartTest, user }) => {
                     </div>
                     <div className="rule-item">
                         <span className="bullet-point">•</span>
-                        <p>Total duration is 45 minutes. Timer starts immediately after clicking "Start Test".</p>
+                        <p>Total duration is 90 minutes. Timer starts immediately after clicking "Start Test".</p>
                     </div>
                     <div className="rule-item">
                         <span className="bullet-point">•</span>
@@ -46,20 +46,25 @@ const Instructions = ({ onStartTest, user }) => {
                     </div>
                     <div className="rule-item">
                         <span className="bullet-point">•</span>
+                        <p>Teams will be shortlisted based on the total marks obtained.</p>
+                    </div>
+                    <div className="rule-item">
+                        <span className="bullet-point">•</span>
                         <p>For more details contact the organizers.</p>
                     </div>
                 </div>
 
                 <div className="action-area">
                     {user ? (
-                        <button className="primary start-btn" onClick={onStartTest}>
-                            <Play size={20} />
-                            <span>Start Test</span>
-                        </button>
+                        // <button className="primary start-btn" onClick={onStartTest}>
+                        //     <Play size={20} />
+                        //     <span>Start Test</span>
+                        // </button>
+                        <div></div>
                     ) : (
                         <div className="login-prompt">
                             <AlertTriangle className="text-yellow" size={20} />
-                            <p>Please log in to start the test.</p>
+                            <p>You can Start Your test on 31st January 2026 anytime from 6:00 PM to 10:00 PM.</p>
                         </div>
                     )}
                 </div>
