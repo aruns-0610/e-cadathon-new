@@ -9,6 +9,41 @@ import question26 from "../assets/question-26.png"
 import question24 from "../assets/question-24.png"
 
 function Quiz({ onQuizComplete, user }) {
+    const caseStudy = `A student team designed a custom PCB version of their breadboard-based line follower robot, which originally used an Arduino Uno, an L298N motor driver module, two IR reflective sensors (A and B), and a 9V battery. In the PCB redesign, they used the same Arduino Uno footprint, but replaced the IR sensor breakout boards with raw IR LED + photodiode pairs, adding their own resistor networks. The IR emitter LEDs were driven directly from the 5V rail using 220 Ω resistors, while the photodiode outputs formed a voltage divider with 10 kΩ resistors feeding the Arduino ADC pins A0 and A1. The L298N motor driver was powered by the same 9V battery, with a 5V regulator added on the PCB to power Arduino and sensors.
+ 
+During testing, the robot behaved inconsistently: the IR sensors sometimes detected the black line, sometimes didn’t, and occasionally both sensors produced identical readings even though one was directly over white surface. The motors also stuttered during sharp turns, and the Arduino occasionally reset when both motors were commanded full-speed. The team noticed that the photodiode outputs were very noisy on the oscilloscope, with a rapid jumping between 0.4V and 3.8V. Further inspection of the PCB revealed that the IR LED and photodiode were routed next to the motor traces, and the analog ground of sensors was merged with the motor ground at a thin 0.5 mm trace. Additionally, the 5V regulator heated up to nearly 80°C when both motors were active. Their KiCad DRC showed no errors, but ERC warned that the motor supply and logic supply shared unlabeled power nets. The team suspects issues in their resistor values, grounding scheme, trace width, and sensor bias design. They must troubleshoot why the line detection and motor response are unstable, and identify weak design choices in their schematic and PCB routing.
+Analyse the case-study given above and answer the following questions:
+
+31)	The photodiodes produced noisy voltage readings (0.4V–3.8V). Based on the described PCB behaviour, which is the most likely root cause?
+(a)	No pull-up resistors used on the ADC pins
+(b)	IR LEDs were underpowered
+(c)	Sensor ground shared a long thin trace with motor current return
+(d)	Arduino ADC sampling rate was too high
+
+32)	Arduino resets when both motors run at full speed. What parameter did the team most likely miscalculate?
+(a)	The dropout voltage of the 7805 regulator
+(b)	The required gate charge for the MOSFETs
+(c)	The resistor values for the IR LED current
+(d)	The ADC resolution (10-bit) mapping
+
+33)	Each IR LED was given a 220 Ω resistor at 5V. Typical IR LED forward voltage is 1.2V and safe current is 20 mA. What LED current did they unknowingly drive?
+(a)	8 mA
+(b)	12 mA
+(c)	17 mA
+(d)	25 mA
+
+34)	The IR LED–photodiode pair was routed next to motor traces carrying rapidly switching current. Which effect causes false triggering?
+(a)	High output impedance of Arduino pins
+(b)	Capacitive and inductive coupling into high-impedance analog node
+(c)	Diode reverse recovery noise
+(d)	Photodiode saturation at low frequency
+
+35)	ERC showed that logic 5V and motor supply 9V shared unlabeled power nets. Why is this dangerous?
+(a)	It prevents ground plane formation
+(b)	It creates a possibility of connecting 9V directly to 5V rail
+(c)	It stops the board from generating Gerber files
+(d)	It forces microcontroller pins to operate at 3.3V
+`
     const questions = [
         {
             id: "1",
@@ -329,7 +364,7 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
 
         // Show success message for 2 seconds then complete
         setTimeout(() => {
-            onQuizComplete();
+            onQuizComplete(finalDisqualifiedStatus);
         }, 2000);
     };
 
@@ -432,7 +467,7 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
                     <div className="single-question-card">
                         <div className="q-header">
                             <span className="q-number">Question {currentQuestionIndex + 1}</span>
-                            <span className="q-type">{currentQ.type}</span>
+                            {/* <span className="q-type">{currentQ.type}</span> */}
                         </div>
 
                         <div className="q-content-scrollable">

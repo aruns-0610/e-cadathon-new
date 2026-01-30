@@ -124,9 +124,15 @@ function App() {
     setQuizCompleted(false); // Reset quizCompleted when starting a new quiz
   };
 
-  const handleQuizComplete = () => { // Added handleQuizComplete function
+  const handleQuizComplete = (isDisqualified = false) => { // Added handleQuizComplete function
     setQuizStarted(false);
-    setQuizCompleted(true);
+    if (isDisqualified === true) {
+      setTestStatus('disqualified');
+      setQuizCompleted(false); // Ensure Disqualified component renders
+    } else {
+      setQuizCompleted(true);
+      setTestStatus('submitted');
+    }
   };
 
   return (
