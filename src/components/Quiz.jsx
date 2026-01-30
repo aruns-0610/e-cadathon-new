@@ -469,41 +469,48 @@ Consider the following statements, and select which combination explains the flu
     };
 
     const calculateScore = () => {
-        let score = 0;
+        let totalScore = 0;
 
         questions.forEach((q) => {
             const userAnswer = answers[q.id];
 
+            // If question is not answered, skip (score remains 0 for this q)
+            if (userAnswer === undefined || userAnswer === null || userAnswer === "") {
+                return;
+            }
+
             if (q.type.toLowerCase() === "mcq") {
                 // MCQ: +1 for correct, -0.25 for wrong
                 if (userAnswer === q.answer) {
-                    console.log(`Q${q.id} Correct. Ans: ${userAnswer}`);
-                    score += 1;
-                } else if (userAnswer) {
-                    console.log(`Q${q.id} Wrong. Got: ${userAnswer}, Expected: ${q.answer}`);
-                    score -= 0.25;
+                    // console.log(`Q${q.id} Correct. Ans: ${userAnswer}`);
+                    totalScore += 1;
+                } else {
+                    // console.log(`Q${q.id} Wrong. Got: ${userAnswer}, Expected: ${q.answer}`);
+                    totalScore -= 0.25;
                 }
             } else {
-                // Numerical
-                if (userAnswer) {
-                    const userVal = parseFloat(userAnswer);
-                    const correctVal = parseFloat(q.answer);
-                    if (Math.abs(userVal - correctVal) < 0.01) { // Add small tolerance
-                        console.log(`Q${q.id} Numerical Correct. Got: ${userVal}`);
-                        score += 2.5;
+                // Numerical: +2.5 for correct
+                const userVal = parseFloat(userAnswer);
+                const correctVal = parseFloat(q.answer);
+
+                // Check if valid number
+                if (!isNaN(userVal) && !isNaN(correctVal)) {
+                    if (Math.abs(userVal - correctVal) < 0.1) { // 0.1 tolerance
+                        // console.log(`Q${q.id} Numerical Correct. Got: ${userVal}`);
+                        totalScore += 2.5;
                     } else {
-                        console.log(`Q${q.id} Numerical Wrong. Got: ${userVal}, Expected: ${correctVal}`);
+                        // console.log(`Q${q.id} Numerical Wrong. Got: ${userVal}, Expected: ${correctVal}`);
+                        // No negative marking for numericals? Assuming 0 for now as per previous logic.
+                        // If you want negative marking for numericals, uncomment below:
+                        // totalScore -= 0.25; 
                     }
                 }
             }
         });
 
-        console.log("Final Calculated Score:", score);
-
-        // score can be negative in this ruleset, but typically we cap floor at 0? 
-        // User didn't specify, but code used to return score directly.
-        // Assuming raw score is desired.
-        return score;
+        const final = parseFloat(totalScore.toFixed(2));
+        console.log("Final Calculated Score:", final);
+        return final;
     };
 
     const handleSubmit = async (forceDisqualified = false) => {
