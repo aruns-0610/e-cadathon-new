@@ -3,20 +3,23 @@ import { Menu, X, ChevronLeft, ChevronRight, Clock, CheckCircle, AlertTriangle }
 import { supabase } from '../supabase';
 import './Quiz.css';
 import question3 from "../assets/question-3.png"
-
+import question29 from "../assets/question-29.png"
+import question28 from "../assets/question-28.png"
+import question26 from "../assets/question-26.png"
+import question24 from "../assets/question-24.png"
 
 function Quiz({ onQuizComplete, user }) {
     const questions = [
         {
+            id: "1",
             type: "McQ",
-            question: `A battery with internal resistance (Ri) is connected across a load resistor (RL). 
-            The terminal voltage measured under load drops significantly. Under what condition(s), the stated scenario occurs?`,
+            question: "A battery with internal resistance (Ri) is connected across a load resistor (RL). The terminal voltage measured under load drops significantly. Under what condition(s), the stated scenario occurs?",
             options: ["The load resistance (RL) is much greater than the internal resistance (Ri)", "The load resistance (RL) is much less than the internal resistance (Ri) of the battery",
                 "The load resistance (RL) is equal to the internal resistance (Ri) of the battery", "The current drawn from the battery decreases due to externally connected resistance"],
-            correctAnswer: "Capacitor",
-            id: 1
+            answer: "The load resistance (RL) is much less than the internal resistance (Ri) of the battery"
         },
         {
+            id: "2",
             type: "McQ",
             question: `Consider the following equation:
 Vo = -(0.0001d(X1)/dt + 2X2), where: X1 = sin(1000πt), X2 = 1.5sin(1000πt)
@@ -26,94 +29,144 @@ To obtain the above output voltage expression using op-amps, which of the follow
 (iii)	1 differentiator, 1 weighted summing amplifier, 1 inverting amplifier
 (iv)	1 differentiator, 1 weighted summing amplifier, 1 non-inverting amplifier
 `,
-            options: ["(i) and (iii) only", "only (ii)", "only (iv)", "(ii) and (iii) only", "None of these"],
-            correctAnswer: "1, 2, and 4 only",
-            id: 2
+            options: ["(i) and (iii) only", "only (ii)",
+                "only (iv)", "(ii) and (iii) only", "None of these"],
+            answer: "(ii) and (iii) only"
         },
         {
-            type: "McQ",
-            question: `Shown below is the timing diagram of a D-Flip flop
-            Which of the following explanation is the most reasonable one for a temporary glitch observed in the output (Q) of the flip flop?
-(i)	Setup time violation
-(ii)	Hold time violation
-(iii)	Propagation delay mismatch in combinational logic feeding the input (D)
-(iv)	Faulty clock buffer causing duty cycle distortion
-`,
-            options: ["only (i) and (iii)", "only (ii) and (iii)",
-                "(i), (ii), (iii), and (iv)", "None of the above"],
-            correctAnswer: "Higher voltage drop and heating along the ground path",
-            image: question3,
-            id: 3
-        },
-        {
-            type: "McQ",
-            question: "Consider the following scenario: Which of the following reason(s) best explain(s) the above cause?",
-            options: ["Diode is damaged", "Source supply is unstable",
-                "Forward voltage of diode changes rapidly with temperature", "High resistor value makes circuit sensitive to noise pickup"],
-            correctAnswer: "Decreases gain and increases stability",
-            id: 4
-        },
-        {
+            id: "3",
             type: "McQ",
             question: `Consider the following description of a LED driver circuit: An LED → resistor → 9V battery
 LED glows bright initially but becomes dim after 5 seconds even though all component values are fixed. Justify the cause of this event.
 `,
-            options: ["Battery internal resistance increasing with load",
-                "LED forward voltage decreasing", "Ambient light interference", "Resistor heating and increase in its value"],
-            correctAnswer: "Schematic → Footprint Assignment → PCB Layout",
-            id: 5
+            options: ["Battery internal resistance increasing with load", "LED forward voltage decreasinge",
+                "Ambient light interference", "Resistor heating and increase in its value"],
+            answer: "Battery internal resistance increasing with load"
         },
         {
-            type: "McQ",
-            question: `Assertion (A): In a half-bridge inverter, the PCB layout must minimize the loop area around the switching MOSFETs.
-Reason (R): Large loop area increases the probability of shoot-through events.
-`,
-            options: ["Both A and R are true, and R explains A", "Both A and R are true, but R not explains A",
-                "A is true, but R is false", "Both A and R are false"
-            ],
-            correctAnswer: 2,
-
-            id: 6
-        },
-        {
-            type: "McQ",
-            question: `7)	You are measuring current using a Hall-effect sensor on a PCB. The output shows slow drifting over time. Choose the best explanation set:
-(i)	Magnetic hysteresis in core material
-(ii)	Temperature drift in the amplifier inside the sensor
-(iii)	Trace carrying measurement signal routed near noisy switching node
-(iv)	Sensor saturates only at high-frequency noise peaks
-`,
-            options: ["(i) and (iii) only", "(ii) and (iv) only",
-                "(i), (ii) and (iii) only", "(iii) only"],
-            correctAnswer: "A and R are true, and R is the correct explanation of A",
-            id: 7
-        },
-        {
+            id: "4",
             type: "McQ",
             question: `You are measuring current using a Hall-effect sensor on a PCB. The output shows slow drifting over time. Choose the best explanation set:
 (i)	Magnetic hysteresis in core material
 (ii)	Temperature drift in the amplifier inside the sensor
 (iii)	Trace carrying measurement signal routed near noisy switching node
-(iv)	Sensor saturates only at high-frequency noise peaks
-`,
-            options: ["only (i) and (ii)", "only (ii) and (iv)"],
-            correctAnswer: 0.01,
-
-            id: 8
+(iv)	Sensor saturates only at high-frequency noise peaks`,
+            options: ["(i) and (iii) only", "(ii) and (iv) only",
+                "(i), (ii) and (iii) only", "(iii) only"],
+            answer: "(i), (ii) and (iii) only"
         },
         {
+            id: "5",
             type: "McQ",
-            question: "Which layer in a PCB defines the electrical connections between components?",
-            options: ["Silkscreen layer", "Copper layer", "Mechanical layer", "Solder mask layer"],
-            correctAnswer: "Copper layer",
-            id: 9
+            question: `A 10 kΩ resistor is connected to a 10 µF capacitor in series. The other end of the capacitor goes to ground. A square-wave source (5 V amplitude, 1 kHz) drives the resistor. 
+            On an oscilloscope, instead of a sharp square wave across the capacitor, you see an unusually low peak amplitude and slow charging, 
+            even though the RC time constant seems appropriate. Which reason best explains this?`,
+            options: ["Capacitor polarity reversed", "Probe connected across the resistor instead of capacitor",
+                "Scope input is set to AC coupling", "Duty cycle of square wave is 50%"],
+            answer: "Probe connected across the resistor instead of capacitor"
         },
         {
+            id: "6",
             type: "Numerical",
-            question: "Enter the value of Pi to two decimal places.",
-            correctAnswer: 3.14,
-            id: 10
-        }
+            question: "A 12 V battery is connected across a 6 Ω resistor. The current flowing through the resistor is:",
+            answer: "2"
+        },
+        {
+            id: "7",
+            type: "McQ",
+            question: `Assertion (A): In a half-bridge inverter, the PCB layout must minimize the loop area around the switching MOSFETs.
+Reason (R): Large loop area increases the probability of shoot-through events.`,
+            options: ["A and R are true, and R is the correct explanation of A", "A and R are true, but R is not the correct explanation",
+                " A is true, R is false", "Both A and R are false"],
+            answer: "A and R are true, and R is the correct explanation of A"
+        },
+        {
+            id: "8",
+            type: "Numerical",
+            question: `The simulation of a RC circuit shows a capacitor charging through a resistor of resistance 47kΩ. 
+            You need the capacitor to reach 75% of its final value within 15ms. What value of capacitance can be chosen?`,
+            answer: "0.22",
+            unit: "X 10^-6 F"
+        },
+        {
+            id: "9",
+            type: "Numerical",
+            question: `A voltage divider uses R1 = 82 kΩ and R2 = 18 kΩ to scale 15V down to a lower voltage. 
+            The divider output is connected to a sensor whose input resistance is 22 kΩ. 
+            What voltage appears   across   the   sensor   input,   considering   the   loading   effect?`,
+            answer: "2.3",
+            unit: "V"
+        },
+        {
+            id: "10",
+            type: "Numerical",
+            question: `A MOSFET put under test at switching a 2A load, is observed to have a duty cycle of 60%. 
+            Given that Rds(ON) = 77mΩ, evaluate the average conduction loss.`,
+            unit: "mW",
+            answer: "184.8",
+        },
+        {
+            id: "11",
+            type: "MCQ",
+            title: "Shown below is the timing diagram of a D-Flip flop",
+            image: question3,
+            descr: `Which of the following explanation is the most reasonable one for a temporary glitch observed in the output (Q) of the flip flop?
+(i)	Setup time violation
+(ii)	Hold time violation
+(iii)	Propagation delay mismatch in combinational logic feeding the input (D)
+(iv)	Faulty clock buffer causing duty cycle distortion
+`,
+            options: ["only (i) and (iii)", "only (ii) and (iii)", "(i), (ii), (iii), and (iv)", "None of the above"],
+            answer: "(i), (ii), (iii), and (iv)"
+        },
+        {
+            id: "12",
+            type: "Numerical",
+            title: "Consider the circuit shown below:",
+            // image: question22, // Image missing in assets
+            descr: `At 1kHz frequency, you want the amplitude of output voltage to be ~0.707 times the i/p voltage. 
+            To achieve this condition, what value of capacitance can be used? Given R = 11kΩ.`,
+            answer: "14.47",
+            unit: "×10^-9 F"
+        },
+        {
+            id: "13",
+            type: "Numerical",
+            title: "Consider the functional block diagram of the 555 timer",
+            image: question24,
+            descr: `Configured to act as an astable multi-vibrator. 
+            Given that, R2 = 3.3kΩ, C1 = 0.1uF, TOFF = 22ms, T = 90ms, determine the value of R1.`,
+            answer: "17.4",
+            unit: "kΩ"
+        },
+        {
+            id: "14",
+            type: "Numerical",
+            title: "Consider the following circuit:",
+            image: question26,
+            descr: `Given that Vin = 2V (peak sine value) at 10kHz, find the minimum slew rate needed (V/µs).`,
+            answer: "0.125",
+            unit: "V/µs"
+        },
+        {
+            id: "15",
+            type: "Numerical",
+            title: "Consider the given Full-wave rectifier circuit:",
+            image: question28,
+            descr: `Given that Vrms = 12V at 100Hz, and RL = 1.1kΩ determine the minimum value of filter 
+            capacitance such that ripples <= 0.8V at load current.`,
+            answer: "67.5",
+            unit: "×10^-6 F"
+        },
+        {
+            id: "16",
+            type: "Numerical",
+            title: "Consider the following CE-configured BJT transistor.",
+            image: question29,
+            descr: "Given that IL = 150mA, at the saturation of transistor when VCE = 0.24V, with a supply voltage of 12V, evaluate the load resistance RL.",
+            answer: "78.4",
+            unit: "Ω"
+        },
     ];
 
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -223,22 +276,26 @@ Reason (R): Large loop area increases the probability of shoot-through events.
         questions.forEach((q) => {
             const userAnswer = answers[q.id];
 
-            if (q.type === "McQ") {
+            if (q.type.toLowerCase() === "mcq") {
                 // MCQ: +1 for correct, -0.25 for wrong
-                if (userAnswer === q.correctAnswer) {
+                if (userAnswer === q.answer) {
                     score += 1;
                 } else if (userAnswer) {
                     score -= 0.25;
                 }
             } else {
                 // Numerical: +2.5 for correct, no negative
-                if (userAnswer && parseFloat(userAnswer) === q.correctAnswer) {
+                // Simple comparison for now, could benefit from tolerance
+                if (userAnswer && parseFloat(userAnswer) === parseFloat(q.answer)) {
                     score += 2.5;
                 }
             }
         });
 
-        return score; // Ensure score is not negative
+        // score can be negative in this ruleset, but typically we cap floor at 0? 
+        // User didn't specify, but code used to return score directly.
+        // Assuming raw score is desired.
+        return score;
     };
 
     const handleSubmit = async (forceDisqualified = false) => {
@@ -344,7 +401,7 @@ Reason (R): Large loop area increases the probability of shoot-through events.
                 <div className="question-grid">
                     {questions.map((q, i) => (
                         <button
-                            key={i}
+                            key={q.id}
                             className={`q-grid-item ${currentQuestionIndex === i ? 'active' : ''} ${answers[q.id] ? 'answered' : ''}`}
                             onClick={() => handleQuestionSelect(i)}
                         >
@@ -378,34 +435,52 @@ Reason (R): Large loop area increases the probability of shoot-through events.
                             <span className="q-type">{currentQ.type}</span>
                         </div>
 
-                        <p className="q-text">{currentQ.question}</p>
+                        <div className="q-content-scrollable">
+                            {/* 1. Title */}
+                            {currentQ.title && <h3 className="q-title">{currentQ.title}</h3>}
 
-                        <div className="q-options">
-                            {currentQ.type === "McQ" ? (
-                                <div className="options-list">
-                                    {currentQ.options.map((option, j) => (
-                                        <label key={j} className={`option-item ${answers[currentQ.id] === option ? 'selected' : ''}`}>
-                                            <input
-                                                type="radio"
-                                                name={`q-${currentQ.id}`}
-                                                value={option}
-                                                checked={answers[currentQ.id] === option}
-                                                onChange={() => handleOptionChange(currentQ.id, option)}
-                                            />
-                                            <span>{option}</span>
-                                        </label>
-                                    ))}
+                            {/* 2. Image */}
+                            {currentQ.image && (
+                                <div className="q-image-container">
+                                    <img src={currentQ.image} alt="Question Diagram" className="q-image" />
                                 </div>
-                            ) : (
-                                <input
-                                    type="number"
-                                    className="numerical-input-field"
-                                    placeholder="Enter numerical answer"
-                                    value={answers[currentQ.id] || ''}
-                                    onChange={(e) => handleOptionChange(currentQ.id, e.target.value)}
-                                    step="any"
-                                />
                             )}
+
+                            {/* 3. Description (or Main Text for old Qs) */}
+                            {currentQ.question && <p className="q-text">{currentQ.question}</p>}
+                            {currentQ.descr && <p className="q-descr">{currentQ.descr}</p>}
+
+                            {/* 4. Options or Input */}
+                            <div className="q-options">
+                                {currentQ.type.toLowerCase() === "mcq" ? (
+                                    <div className="options-list">
+                                        {currentQ.options.map((option, j) => (
+                                            <label key={j} className={`option-item ${answers[currentQ.id] === option ? 'selected' : ''}`}>
+                                                <input
+                                                    type="radio"
+                                                    name={`q-${currentQ.id}`}
+                                                    value={option}
+                                                    checked={answers[currentQ.id] === option}
+                                                    onChange={() => handleOptionChange(currentQ.id, option)}
+                                                />
+                                                <span>{option}</span>
+                                            </label>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className="numerical-input-wrapper">
+                                        <input
+                                            type="number"
+                                            className="numerical-input-field"
+                                            placeholder="Enter answer"
+                                            value={answers[currentQ.id] || ''}
+                                            onChange={(e) => handleOptionChange(currentQ.id, e.target.value)}
+                                            step="any"
+                                        />
+                                        {currentQ.unit && <span className="unit-label">{currentQ.unit}</span>}
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
