@@ -16,39 +16,8 @@ import question8 from "../assets/question-8.png"
 function Quiz({ onQuizComplete, user }) {
     const caseStudy = `A student team designed a custom PCB version of their breadboard-based line follower robot, which originally used an Arduino Uno, an L298N motor driver module, two IR reflective sensors (A and B), and a 9V battery. In the PCB redesign, they used the same Arduino Uno footprint, but replaced the IR sensor breakout boards with raw IR LED + photodiode pairs, adding their own resistor networks. The IR emitter LEDs were driven directly from the 5V rail using 220 Ω resistors, while the photodiode outputs formed a voltage divider with 10 kΩ resistors feeding the Arduino ADC pins A0 and A1. The L298N motor driver was powered by the same 9V battery, with a 5V regulator added on the PCB to power Arduino and sensors.
  
-During testing, the robot behaved inconsistently: the IR sensors sometimes detected the black line, sometimes didn’t, and occasionally both sensors produced identical readings even though one was directly over white surface. The motors also stuttered during sharp turns, and the Arduino occasionally reset when both motors were commanded full-speed. The team noticed that the photodiode outputs were very noisy on the oscilloscope, with a rapid jumping between 0.4V and 3.8V. Further inspection of the PCB revealed that the IR LED and photodiode were routed next to the motor traces, and the analog ground of sensors was merged with the motor ground at a thin 0.5 mm trace. Additionally, the 5V regulator heated up to nearly 80°C when both motors were active. Their KiCad DRC showed no errors, but ERC warned that the motor supply and logic supply shared unlabeled power nets. The team suspects issues in their resistor values, grounding scheme, trace width, and sensor bias design. They must troubleshoot why the line detection and motor response are unstable, and identify weak design choices in their schematic and PCB routing.
-Analyse the case-study given above and answer the following questions:
+During testing, the robot behaved inconsistently: the IR sensors sometimes detected the black line, sometimes didn’t, and occasionally both sensors produced identical readings even though one was directly over white surface. The motors also stuttered during sharp turns, and the Arduino occasionally reset when both motors were commanded full-speed. The team noticed that the photodiode outputs were very noisy on the oscilloscope, with a rapid jumping between 0.4V and 3.8V. Further inspection of the PCB revealed that the IR LED and photodiode were routed next to the motor traces, and the analog ground of sensors was merged with the motor ground at a thin 0.5 mm trace. Additionally, the 5V regulator heated up to nearly 80°C when both motors were active. Their KiCad DRC showed no errors, but ERC warned that the motor supply and logic supply shared unlabeled power nets. The team suspects issues in their resistor values, grounding scheme, trace width, and sensor bias design. They must troubleshoot why the line detection and motor response are unstable, and identify weak design choices in their schematic and PCB routing.`;
 
-31)	The photodiodes produced noisy voltage readings (0.4V–3.8V). Based on the described PCB behaviour, which is the most likely root cause?
-(a)	No pull-up resistors used on the ADC pins
-(b)	IR LEDs were underpowered
-(c)	Sensor ground shared a long thin trace with motor current return
-(d)	Arduino ADC sampling rate was too high
-
-32)	Arduino resets when both motors run at full speed. What parameter did the team most likely miscalculate?
-(a)	The dropout voltage of the 7805 regulator
-(b)	The required gate charge for the MOSFETs
-(c)	The resistor values for the IR LED current
-(d)	The ADC resolution (10-bit) mapping
-
-33)	Each IR LED was given a 220 Ω resistor at 5V. Typical IR LED forward voltage is 1.2V and safe current is 20 mA. What LED current did they unknowingly drive?
-(a)	8 mA
-(b)	12 mA
-(c)	17 mA
-(d)	25 mA
-
-34)	The IR LED–photodiode pair was routed next to motor traces carrying rapidly switching current. Which effect causes false triggering?
-(a)	High output impedance of Arduino pins
-(b)	Capacitive and inductive coupling into high-impedance analog node
-(c)	Diode reverse recovery noise
-(d)	Photodiode saturation at low frequency
-
-35)	ERC showed that logic 5V and motor supply 9V shared unlabeled power nets. Why is this dangerous?
-(a)	It prevents ground plane formation
-(b)	It creates a possibility of connecting 9V directly to 5V rail
-(c)	It stops the board from generating Gerber files
-(d)	It forces microcontroller pins to operate at 3.3V
-`
     const questions = [
         {
             id: "1",
@@ -142,8 +111,8 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
             type: "Numerical",
             question: `A MOSFET put under test at switching a 2A load, is observed to have a duty cycle of 60%. 
             Given that Rds(ON) = 77mΩ, evaluate the average conduction loss.`,
-            unit: "mW",
             answer: "184.8",
+            unit: "mW"
         },
         {
             id: "11",
@@ -362,7 +331,41 @@ Consider the following statements, and select which combination explains the flu
                 "Source supply is unstable", "Diode is damaged"],
             answer: ""
         },
-
+        {
+            id: "31",
+            type: "MCQ",
+            question: `The photodiodes produced noisy voltage readings (0.4V–3.8V). Based on the described PCB behaviour, which is the most likely root cause?`,
+            options: ["No pull-up resistors used on the ADC pins", "IR LEDs were underpowered", "Sensor ground shared a long thin trace with motor current return", "Arduino ADC sampling rate was too high"],
+            answer: ""
+        },
+        {
+            id: "32",
+            type: "MCQ",
+            question: `Arduino resets when both motors run at full speed. What parameter did the team most likely miscalculate?`,
+            options: ["The dropout voltage of the 7805 regulator", "The required gate charge for the MOSFETs", "The resistor values for the IR LED current", "The ADC resolution (10-bit) mapping"],
+            answer: ""
+        },
+        {
+            id: "33",
+            type: "MCQ",
+            question: `Each IR LED was given a 220 Ω resistor at 5V. Typical IR LED forward voltage is 1.2V and safe current is 20 mA. What LED current did they unknowingly drive?`,
+            options: ["8 mA", "12 mA", "17 mA", "25 mA"],
+            answer: ""
+        },
+        {
+            id: "34",
+            type: "MCQ",
+            question: `The IR LED–photodiode pair was routed next to motor traces carrying rapidly switching current. Which effect causes false triggering?`,
+            options: ["High output impedance of Arduino pins", "Capacitive and inductive coupling into high-impedance analog node", "Diode reverse recovery noise", "Photodiode saturation at low frequency"],
+            answer: ""
+        },
+        {
+            id: "35",
+            type: "MCQ",
+            question: `ERC showed that logic 5V and motor supply 9V shared unlabeled power nets. Why is this dangerous?`,
+            options: ["It prevents ground plane formation", "It creates a possibility of connecting 9V directly to 5V rail", "It stops the board from generating Gerber files", "It forces microcontroller pins to operate at 3.3V"],
+            answer: ""
+        }
 
     ];
 
@@ -374,6 +377,7 @@ Consider the following statements, and select which combination explains the flu
     const [isDisqualified, setIsDisqualified] = useState(false);
     const [showFullscreenWarning, setShowFullscreenWarning] = useState(false);
     const [showCaseStudy, setShowCaseStudy] = useState(false);
+    const [showSubmitConfirm, setShowSubmitConfirm] = useState(false);
     const [fullscreenExitCount, setFullscreenExitCount] = useState(0);
 
     // Track visibility changes for disqualification
@@ -463,9 +467,7 @@ Consider the following statements, and select which combination explains the flu
     };
 
     const handleSubmitClick = () => {
-        if (window.confirm("Are you sure you want to submit the assessment?")) {
-            handleSubmit();
-        }
+        setShowSubmitConfirm(true);
     };
 
     const calculateScore = () => {
@@ -514,6 +516,7 @@ Consider the following statements, and select which combination explains the flu
     };
 
     const handleSubmit = async (forceDisqualified = false) => {
+        setShowSubmitConfirm(false); // Close modal if open
         setIsSubmitting(true);
         // Define outside try block to be accessible in setTimeout
         const finalDisqualifiedStatus = forceDisqualified || isDisqualified;
@@ -572,16 +575,14 @@ Consider the following statements, and select which combination explains the flu
         )
     }
 
-    const handleReturnFullscreen = () => {
-        if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen()
-                .then(() => {
-                    setShowFullscreenWarning(false);
-                    setIsDisqualified(false);
-                })
-                .catch(err => console.log(err));
+    // Auto-show/hide Case Study based on question index
+    useEffect(() => {
+        if (currentQuestionIndex >= 30) {
+            setShowCaseStudy(true);
+        } else {
+            setShowCaseStudy(false);
         }
-    };
+    }, [currentQuestionIndex]);
 
     const currentQ = questions[currentQuestionIndex];
 
@@ -606,18 +607,22 @@ Consider the following statements, and select which combination explains the flu
                 </div>
             )}
 
-            {/* Case Study Modal */}
-            {showCaseStudy && (
-                <div className="case-study-overlay">
-                    <div className="case-study-modal">
-                        <div className="case-study-header">
-                            <h2>Case Study</h2>
-                            <button className="close-modal-btn" onClick={() => setShowCaseStudy(false)}>
-                                <X size={24} />
+            {/* Submit Confirmation Modal */}
+            {showSubmitConfirm && (
+                <div className="fullscreen-warning-overlay">
+                    <div className="submit-confirm-modal">
+                        <CheckCircle size={48} className="confirm-icon" />
+                        <h2>Submit Assessment?</h2>
+                        <p className="warning-text">
+                            Are you sure you want to submit? You cannot change your answers after submission.
+                        </p>
+                        <div className="modal-actions">
+                            <button className="base-btn cancel-btn" onClick={() => setShowSubmitConfirm(false)}>
+                                Cancel
                             </button>
-                        </div>
-                        <div className="case-study-content">
-                            <p>{caseStudy}</p>
+                            <button className="base-btn confirm-submit-btn" onClick={() => handleSubmit()}>
+                                Yes, Submit
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -633,13 +638,22 @@ Consider the following statements, and select which combination explains the flu
                 </div>
                 <div className="question-grid">
                     {questions.map((q, i) => (
-                        <button
-                            key={q.id}
-                            className={`q-grid-item ${currentQuestionIndex === i ? 'active' : ''} ${answers[q.id] ? 'answered' : ''}`}
-                            onClick={() => handleQuestionSelect(i)}
-                        >
-                            {i + 1}
-                        </button>
+                        <React.Fragment key={q.id}>
+                            {i === 30 && (
+                                <button
+                                    className={`case-study-separator ${currentQuestionIndex >= 30 ? 'active' : ''}`}
+                                    onClick={() => handleQuestionSelect(30)}
+                                >
+                                    Case Study
+                                </button>
+                            )}
+                            <button
+                                className={`q-grid-item ${currentQuestionIndex === i ? 'active' : ''} ${answers[q.id] ? 'answered' : ''}`}
+                                onClick={() => handleQuestionSelect(i)}
+                            >
+                                {i + 1}
+                            </button>
+                        </React.Fragment>
                     ))}
                 </div>
             </div>
@@ -651,7 +665,8 @@ Consider the following statements, and select which combination explains the flu
                         <Menu size={28} />
                     </button>
 
-                    <button className="case-study-btn" onClick={() => setShowCaseStudy(true)}>
+                    {/* Manual Toggle Button (Optional, can keep for user flexibility or hide if auto-only) */}
+                    <button className={`case-study-btn ${showCaseStudy ? 'active' : ''}`} onClick={() => setShowCaseStudy(!showCaseStudy)}>
                         <ClipboardList size={20} />
                         <span>Case Study</span>
                     </button>
@@ -666,7 +681,10 @@ Consider the following statements, and select which combination explains the flu
                     </button>
                 </div>
 
-                <div className="question-display-area">
+                {/* Question Area - Split View Logic */}
+                <div className={`question-display-area ${showCaseStudy ? 'split-view' : ''}`}>
+
+                    {/* Left Side (or Full): Question Card */}
                     <div className="single-question-card">
                         <div className="q-header">
                             <span className="q-number">Question {currentQuestionIndex + 1}</span>
@@ -721,6 +739,22 @@ Consider the following statements, and select which combination explains the flu
                             </div>
                         </div>
                     </div>
+
+                    {/* Right Side: Case Study Panel */}
+                    {showCaseStudy && (
+                        <div className="case-study-panel">
+                            <div className="case-study-header-panel">
+                                <h2>Case Study</h2>
+                                <button className="close-panel-btn" onClick={() => setShowCaseStudy(false)}>
+                                    <X size={20} />
+                                </button>
+                            </div>
+                            <div className="case-study-content-panel">
+                                <p>{caseStudy}</p>
+                            </div>
+                        </div>
+                    )}
+
                 </div>
 
                 <div className="quiz-controls">

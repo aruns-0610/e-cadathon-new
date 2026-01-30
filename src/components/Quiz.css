@@ -539,3 +539,195 @@
         height: 90vh;
     }
 }
+
+/* Submit Confirmation Modal */
+.submit-confirm-modal {
+    background-color: var(--color-bg-card);
+    border: 2px solid var(--color-primary);
+    border-radius: 16px;
+    padding: 3rem;
+    max-width: 500px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    animation: modalSlideUp 0.3s ease-out;
+}
+
+.confirm-icon {
+    color: #10b981;
+    margin-bottom: 0.5rem;
+}
+
+.submit-confirm-modal h2 {
+    font-size: 1.75rem;
+    color: var(--color-text-main);
+    margin: 0;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.cancel-btn {
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-main);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.cancel-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.confirm-submit-btn {
+    padding: 0.75rem 1.5rem;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+/* Split View Layout */
+.question-display-area.split-view {
+    display: flex;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.question-display-area.split-view .single-question-card {
+    flex: 1;
+    /* Takes half space if panel is there */
+    max-width: 50%;
+}
+
+.case-study-panel {
+    flex: 1;
+    max-width: 50%;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    /* Match roughly the question card height */
+    overflow: hidden;
+    animation: fadeInRight 0.3s ease-out;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.case-study-header-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.case-study-header-panel h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--color-primary);
+}
+
+.close-panel-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-panel-btn:hover {
+    color: var(--color-text-main);
+}
+
+.case-study-content-panel {
+    flex: 1;
+    overflow-y: auto;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    white-space: pre-wrap;
+    padding-right: 0.5rem;
+}
+
+/* Custom Scrollbar for panel */
+.case-study-content-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.case-study-content-panel::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 4px;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 768px) {
+    .question-display-area.split-view {
+        flex-direction: column-reverse;
+        /* Question on top, Case Study below */
+    }
+
+    .question-display-area.split-view .single-question-card,
+    .case-study-panel {
+        max-width: 100%;
+        flex: none;
+        height: auto;
+    }
+
+    .case-study-panel {
+        max-height: 400px;
+    }
+}
+
+.case-study-separator {
+    grid-column: 1 / -1;
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid #10b981;
+    border-radius: 8px;
+    padding: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+}
+
+.case-study-separator:hover,
+.case-study-separator.active {
+    background-color: #10b981;
+    color: white;
+}
