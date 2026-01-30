@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, ChevronLeft, ChevronRight, Clock, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Menu, X, ChevronLeft, ChevronRight, Clock, CheckCircle, AlertTriangle, ClipboardList } from 'lucide-react';
 import { supabase } from '../supabase';
 import './Quiz.css';
 import question3 from "../assets/question-3.png"
+import question4 from "../assets/question-4.png"
 import question29 from "../assets/question-29.png"
 import question28 from "../assets/question-28.png"
 import question26 from "../assets/question-26.png"
 import question24 from "../assets/question-24.png"
+import question22 from "../assets/question-22.png"
+import question19 from "../assets/question-19.png"
+import question9 from "../assets/question-9.png"
+import question8 from "../assets/question-8.png"
 
 function Quiz({ onQuizComplete, user }) {
     const caseStudy = `A student team designed a custom PCB version of their breadboard-based line follower robot, which originally used an Arduino Uno, an L298N motor driver module, two IR reflective sensors (A and B), and a 9V battery. In the PCB redesign, they used the same Arduino Uno footprint, but replaced the IR sensor breakout boards with raw IR LED + photodiode pairs, adding their own resistor networks. The IR emitter LEDs were driven directly from the 5V rail using 220 Ω resistors, while the photodiode outputs formed a voltage divider with 10 kΩ resistors feeding the Arduino ADC pins A0 and A1. The L298N motor driver was powered by the same 9V battery, with a 5V regulator added on the PCB to power Arduino and sensors.
@@ -202,6 +207,163 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
             answer: "78.4",
             unit: "Ω"
         },
+        {
+            id: "17",
+            type: "Numerical",
+            title: "Consider the circuit shown below:",
+            image: question22,
+            descr: `At 1kHz frequency, you want the amplitude of output voltage to be ~0.707 times the i/p voltage. 
+            To achieve this condition, what value of capacitance can be used? Given R = 11kΩ.`,
+            answer: "14.47",
+            unit: "×10^-9 F"
+        },
+        {
+            id: "18",
+            type: "MCQ",
+            title: "Consider the circuit given below",
+            image: question19,
+            descr: `The GPIO pin is observed to be randomly reading HIGH or LOW. Why?`,
+            options: ["Divider ratio wrong", "MCU pin is open-drain", "High impedance, susceptible to noise", "Tolerances mismatched"],
+            answer: ""
+        },
+        {
+            id: "19",
+            type: "McQ",
+            question: `In a microcontroller’s UART part, the Tx and Rx is connected via a 10kΩ series resistor. It is observed that the communication fails intermittently. What is the reason behind this?`,
+            options: ["Baud rate too low", "Series resistor too large, thus signal edges slow down",
+                "Tx polarity inversed", "Wrong parity configuration"],
+            answer: ""
+        },
+        {
+            id: "20",
+            type: "McQ",
+            question: `Comparator input crosses threshold very slowly due to RC. But output rapidly toggles HIGH/LOW several times. Why this occurs?`,
+            options: ["No hysteresis (Schmitt trigger not used)", "Comparator output impedance too high",
+                "High input capacitance", "Long wires causing inductive kick"],
+            answer: ""
+        },
+        {
+            id: "21",
+            type: "MCQ",
+            title: "",
+            image: question19,
+            descr: `Here Vin = 12V, Vout = 5V, Cin = 0.1uF, Cout = 100uF
+            The output oscillates at ~20kHz. What is the reason behind this?`,
+            options: ["Input side capacitor undervaluedg", "Output capacitor ESR too high", "Load too heavy",
+                "LM7805 installed backwards", "Missing small ceramic capacitor on output"],
+            answer: ""
+        },
+        {
+            id: "22",
+            type: "McQ",
+            question: `Output of a non-inverting amplifier saturates at +12V but never reaches -12V, 
+            even though supply rails are ±12 V. What is the most likely reason? Given that Rf >> Rin, 
+            and Vin is a sine wave of very small amplitude.`,
+            options: ["Input offset voltage too high", "Rf is too large",
+                "Op-amp has asymmetric output swing capability", "Rin is too small"],
+            answer: ""
+        },
+        {
+            id: "23",
+            type: "McQ",
+            question: `A PCB drives a BLDC motor. During rotor stall, the MOSFETs on the phase-A leg overheat more than phase-B and phase-C.
+Which reason is most appropriate?
+`,
+            options: ["Rotor magnets demagnetized on phase-A only", "Back EMF absent → current spikes concentrated on one leg",
+                "Motor coils saturate on only one phase", "Shunt resistor on phase-A has lower tolerance", "Phase-A MOSFET has higher Rds(on) only at low currents"],
+            answer: ""
+        },
+        {
+            id: "24",
+            type: "McQ",
+            question: `A DC motor is powered from a MOSFET-based PWM driver on your PCB. Under load, the motor draws more current and the PCB ground reference fluctuates.
+Consider the following statements, and select which combination explains the fluctuating ground reference.
+(i)	Increased armature current increases voltage drop across PCB ground traces
+(ii)	Motor inductance causes sharp current edges during PWM switching
+(iii)	Commutation in the motor introduces additional high-frequency noise
+`,
+            options: ["(ii) and (iii) only", "(i) and (iii) only",
+                "(i), (ii), and (iii)", "(i) and (ii) only"],
+            answer: ""
+        },
+        {
+            id: "25",
+            type: "McQ",
+            question: `12)	Which option(s) correctly describes hazards in combinational logic?
+(i)	Static-1 hazard occurs when output should remain 1 but briefly dips to 0
+(ii)	Dynamic hazards involve multiple unwanted transitions
+(iii)	Hazard-free design always requires adding flip-flops
+(iv)	k-map simplification can unintentionally introduce hazards
+`,
+            options: ["(i) and (ii) only", "(iv) only",
+                "(i), (ii), and (iv) only", "(i) only", "(ii) and (iii) only"],
+            answer: ""
+        },
+        {
+            id: "26",
+            type: "McQ",
+            question: `NPN transistor switches a relay. Relay coil has a flyback diode but mounted far at PCB corner, 
+            with long thin trace back to transistor. Relay sometimes resets the microcontroller when switching. 
+            Which is the BEST explanation?`,
+            options: ["Transistor hFE is too low", "MCU reset pin floating",
+                "Flyback diode reversed", "Diode too far from the coil"],
+            answer: ""
+        },
+        {
+            id: "27",
+            type: "MCQ",
+            title: "You are given the following target output expression:",
+            image: question9,
+            descr: `To implement this expression using op-amp building blocks, which of the following configuration sets are valid?
+(i)	1 integrator, 1 differentiator, 1 weighted summer
+(ii)	2 integrators, 1 differentiator, 1 unit gain follower
+(iii)	1 inv-amp, 1 differentiator, 1 weighted summer
+(iv)	1 integrator, 1 differentiator, 1 I-V converter
+`,
+            options: ["(i), (ii), and (iii) only", "(ii) and (iv) only",
+                "(i) and (iii) only", "None of these", "(i) only"],
+            answer: ""
+        },
+        {
+            id: "28",
+            type: "MCQ",
+            title: "",
+            image: question8,
+            descr: `For the given circuit, which set of statements is most accurate and appropriate?
+(i)	Increases R, increases the thermal noise contribution
+(ii)	Increasing C, shifts the cut-off frequency lower
+(iii)	Reducing R, decreases the loading effect on the previous stage
+(iv)	Increasing C, improves high-frequency stability in the op-amp stage
+
+`,
+            options: ["(i), (ii), and (iii)", "only (ii) and (iv)",
+                "(ii), (iii) and (iv)", "only (i) and (ii)", "None of these"],
+            answer: ""
+        },
+        {
+            id: "29",
+            type: "MCQ",
+            title: "Consider the given PCB scenario:",
+            image: question8,
+            descr: `DRC does not show any error but PCB does not work. If not working, 
+            why the ERC/DRC did not show any error?
+`,
+            options: ["Footprint library outdated", "Pin functions not mapped to electrical types",
+                "KiCad cannot detect polarity mismatches", "Symbol pin numbers and footprint pins can differ without DRC flags"],
+            answer: ""
+        },
+        {
+            id: "30",
+            type: "MCQ",
+            title: "Consider the following scenario:",
+            image: question3,
+            descr: `Which of the following reason(s) best explain(s) the above cause?`,
+            options: ["Forward voltage of diode changes rapidly with temperature", "High resistor value makes circuit sensitive to noise pickup",
+                "Source supply is unstable", "Diode is damaged"],
+            answer: ""
+        },
+
+
     ];
 
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -211,6 +373,7 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isDisqualified, setIsDisqualified] = useState(false);
     const [showFullscreenWarning, setShowFullscreenWarning] = useState(false);
+    const [showCaseStudy, setShowCaseStudy] = useState(false);
     const [fullscreenExitCount, setFullscreenExitCount] = useState(0);
 
     // Track visibility changes for disqualification
@@ -314,18 +477,28 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
             if (q.type.toLowerCase() === "mcq") {
                 // MCQ: +1 for correct, -0.25 for wrong
                 if (userAnswer === q.answer) {
+                    console.log(`Q${q.id} Correct. Ans: ${userAnswer}`);
                     score += 1;
                 } else if (userAnswer) {
+                    console.log(`Q${q.id} Wrong. Got: ${userAnswer}, Expected: ${q.answer}`);
                     score -= 0.25;
                 }
             } else {
-                // Numerical: +2.5 for correct, no negative
-                // Simple comparison for now, could benefit from tolerance
-                if (userAnswer && parseFloat(userAnswer) === parseFloat(q.answer)) {
-                    score += 2.5;
+                // Numerical
+                if (userAnswer) {
+                    const userVal = parseFloat(userAnswer);
+                    const correctVal = parseFloat(q.answer);
+                    if (Math.abs(userVal - correctVal) < 0.01) { // Add small tolerance
+                        console.log(`Q${q.id} Numerical Correct. Got: ${userVal}`);
+                        score += 2.5;
+                    } else {
+                        console.log(`Q${q.id} Numerical Wrong. Got: ${userVal}, Expected: ${correctVal}`);
+                    }
                 }
             }
         });
+
+        console.log("Final Calculated Score:", score);
 
         // score can be negative in this ruleset, but typically we cap floor at 0? 
         // User didn't specify, but code used to return score directly.
@@ -425,6 +598,23 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
                 </div>
             )}
 
+            {/* Case Study Modal */}
+            {showCaseStudy && (
+                <div className="case-study-overlay">
+                    <div className="case-study-modal">
+                        <div className="case-study-header">
+                            <h2>Case Study</h2>
+                            <button className="close-modal-btn" onClick={() => setShowCaseStudy(false)}>
+                                <X size={24} />
+                            </button>
+                        </div>
+                        <div className="case-study-content">
+                            <p>{caseStudy}</p>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Sidebar */}
             <div className={`quiz-sidebar ${isSidebarOpen ? 'open' : ''}`}>
                 <div className="sidebar-header">
@@ -451,6 +641,11 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
                 <div className="quiz-top-bar">
                     <button className="menu-btn" onClick={() => setIsSidebarOpen(true)}>
                         <Menu size={28} />
+                    </button>
+
+                    <button className="case-study-btn" onClick={() => setShowCaseStudy(true)}>
+                        <ClipboardList size={20} />
+                        <span>Case Study</span>
                     </button>
 
                     <div className={`timer-display ${isDisqualified ? 'disqualified' : ''}`}>

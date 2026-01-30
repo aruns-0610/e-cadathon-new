@@ -94,8 +94,11 @@
 
 .login-prompt {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
     color: #fbbf24;
-    gap: 0.5rem;
+    gap: 1rem;
+    text-align: center;
+    max-width: 600px;
 }
