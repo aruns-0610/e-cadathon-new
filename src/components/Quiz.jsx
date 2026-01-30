@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Menu, X, ChevronLeft, ChevronRight, Clock, CheckCircle, AlertTriangle } from 'lucide-react';
 import { supabase } from '../supabase';
 import './Quiz.css';
-import question3 from "../assents/question-3.png"
+import question3 from "../assets/question-3.png"
+
 
 function Quiz({ onQuizComplete, user }) {
     const questions = [
@@ -69,8 +70,9 @@ Reason (R): Large loop area increases the probability of shoot-through events.
 `,
             options: ["Both A and R are true, and R explains A", "Both A and R are true, but R not explains A",
                 "A is true, but R is false", "Both A and R are false"
-            ]
+            ],
             correctAnswer: 2,
+
             id: 6
         },
         {
@@ -94,8 +96,9 @@ Reason (R): Large loop area increases the probability of shoot-through events.
 (iii)	Trace carrying measurement signal routed near noisy switching node
 (iv)	Sensor saturates only at high-frequency noise peaks
 `,
-            options: ["only (i) and (ii)", "only (ii) and (iv)"]
+            options: ["only (i) and (ii)", "only (ii) and (iv)"],
             correctAnswer: 0.01,
+
             id: 8
         },
         {
