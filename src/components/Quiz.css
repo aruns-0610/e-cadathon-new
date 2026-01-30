@@ -299,6 +299,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .submission-content {
@@ -307,11 +318,41 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    animation: scaleIn 0.4s ease-out;
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .submit-success-icon {
     color: #10b981;
     margin-bottom: 1rem;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.submit-failure-icon {
+    animation: pulse 1.5s ease-in-out infinite;
 }
 
 /* Fullscreen Warning Modal */

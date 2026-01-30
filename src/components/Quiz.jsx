@@ -439,6 +439,15 @@ Consider the following statements, and select which combination explains the flu
         return () => clearInterval(timer);
     }, []);
 
+    // Auto-show/hide Case Study based on question index
+    useEffect(() => {
+        if (currentQuestionIndex >= 30) {
+            setShowCaseStudy(true);
+        } else {
+            setShowCaseStudy(false);
+        }
+    }, [currentQuestionIndex]);
+
     const formatTime = (seconds) => {
         const mins = Math.floor(seconds / 60);
         const secs = seconds % 60;
@@ -575,14 +584,16 @@ Consider the following statements, and select which combination explains the flu
         )
     }
 
-    // Auto-show/hide Case Study based on question index
-    useEffect(() => {
-        if (currentQuestionIndex >= 30) {
-            setShowCaseStudy(true);
-        } else {
-            setShowCaseStudy(false);
+    const handleReturnFullscreen = () => {
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen()
+                .then(() => {
+                    setShowFullscreenWarning(false);
+                    setIsDisqualified(false);
+                })
+                .catch(err => console.log(err));
         }
-    }, [currentQuestionIndex]);
+    };
 
     const currentQ = questions[currentQuestionIndex];
 
