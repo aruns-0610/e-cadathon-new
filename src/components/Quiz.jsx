@@ -304,6 +304,7 @@ Reason (R): Large loop area increases the probability of shoot-through events.
             document.documentElement.requestFullscreen()
                 .then(() => {
                     setShowFullscreenWarning(false);
+                    setIsDisqualified(false);
                 })
                 .catch(err => console.log(err));
         }
