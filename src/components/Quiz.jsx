@@ -348,7 +348,7 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
         return (
             <div className="submission-loading">
                 <div className="submission-content">
-                    <AlertTriangle size={64} className="submit-failure-icon" />
+                    <AlertTriangle size={64} className="text-red-500 submit-failure-icon" />
                     <h2>You are disqualified</h2>
                     <p>Redirecting to home...</p>
                 </div>
