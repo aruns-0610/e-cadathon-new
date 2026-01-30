@@ -55,7 +55,7 @@ const Instructions = ({ onStartTest, user }) => {
                 </div>
 
                 <div className="action-area">
-                    {user.email === "arun6.10.2006@gmail.com" ? (
+                    {user?.email === "arun6.10.2006@gmail.com" ? (
                         <button className="primary start-btn" onClick={onStartTest}>
                             <Play size={20} />
                             <span>Start Test</span>
