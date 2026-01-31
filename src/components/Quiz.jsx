@@ -13,6 +13,7 @@ import question22 from "../assets/question-22.png"
 import question19 from "../assets/question-19.png"
 import question9 from "../assets/question-9.png"
 import question8 from "../assets/question-8.png"
+import question20 from "../assets/question-20.png"
 
 function Quiz({ onQuizComplete, user }) {
     const caseStudy = `A student team designed a custom PCB version of their breadboard-based line follower robot, which originally used an Arduino Uno, an L298N motor driver module, two IR reflective sensors (A and B), and a 9V battery. In the PCB redesign, they used the same Arduino Uno footprint, but replaced the IR sensor breakout boards with raw IR LED + photodiode pairs, adding their own resistor networks. The IR emitter LEDs were driven directly from the 5V rail using 220 Ω resistors, while the photodiode outputs formed a voltage divider with 10 kΩ resistors feeding the Arduino ADC pins A0 and A1. The L298N motor driver was powered by the same 9V battery, with a 5V regulator added on the PCB to power Arduino and sensors.
