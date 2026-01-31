@@ -709,10 +709,10 @@ Consider the following statements, and select which combination explains the flu
                     </button>
 
                     {/* Manual Toggle Button (Optional, can keep for user flexibility or hide if auto-only) */}
-                    <button className={`case-study-btn ${showCaseStudy ? 'active' : ''}`} onClick={() => setShowCaseStudy(!showCaseStudy)}>
+                    {/* <button className={`case-study-btn ${showCaseStudy ? 'active' : ''}`} onClick={() => setShowCaseStudy(!showCaseStudy)}>
                         <ClipboardList size={20} />
                         <span>Case Study</span>
-                    </button>
+                    </button> */}
 
                     <div className={`timer-display ${isDisqualified ? 'disqualified' : ''}`}>
                         {isDisqualified ? <AlertTriangle size={20} /> : <Clock size={20} />}
