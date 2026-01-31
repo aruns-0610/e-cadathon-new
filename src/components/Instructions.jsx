@@ -42,7 +42,7 @@ const Instructions = ({ onStartTest, user }) => {
                     </div>
                     <div className="rule-item">
                         <span className="bullet-point">•</span>
-                        <p>Test Will be Submitted Automatically after time over.</p>
+                        <p style={{ textTransform: "uppercase" }}>Test Will be Submitted Automatically after the alotted time is over.</p>
                     </div>
                     <div className="rule-item">
                         <span className="bullet-point">•</span>

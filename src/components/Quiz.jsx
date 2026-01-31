@@ -3,6 +3,7 @@ import { Menu, X, ChevronLeft, ChevronRight, Clock, CheckCircle, AlertTriangle, 
 import { supabase } from '../supabase';
 import './Quiz.css';
 import question3 from "../assets/question-3.png"
+import question16 from "../assets/question-16.png"
 import question4 from "../assets/question-4.png"
 import question29 from "../assets/question-29.png"
 import question28 from "../assets/question-28.png"
@@ -72,13 +73,18 @@ LED glows bright initially but becomes dim after 5 seconds even though all compo
             even though the RC time constant seems appropriate. Which reason best explains this?`,
             options: ["Capacitor polarity reversed", "Probe connected across the resistor instead of capacitor",
                 "Scope input is set to AC coupling", "Duty cycle of square wave is 50%"],
-            answer: "Probe connected across the resistor instead of capacitor"
+            answer: "Scope input is set to AC coupling"
         },
         {
             id: "6",
             type: "Numerical",
-            question: "A 12 V battery is connected across a 6 Ω resistor. The current flowing through the resistor is:",
-            answer: "2"
+            question: `You are driving a LED from a 3.3V microcontroller pin. Forward drop of the LED varies between 0.9-1.1V. The minimum value of LED current should be 6mA, i.e., even under the worst case scenario.
+            Now, what is the maximum value of resistance that would guarantee a LED current >= 6mA?`,
+            answer: {
+                from: "360",
+                to: "367"
+            },
+            unit: "Ω"
         },
         {
             id: "7",
@@ -87,14 +93,17 @@ LED glows bright initially but becomes dim after 5 seconds even though all compo
 Reason (R): Large loop area increases the probability of shoot-through events.`,
             options: ["A and R are true, and R is the correct explanation of A", "A and R are true, but R is not the correct explanation",
                 " A is true, R is false", "Both A and R are false"],
-            answer: "A and R are true, and R is the correct explanation of A"
+            answer: "A is true, R is false"
         },
         {
             id: "8",
             type: "Numerical",
             question: `The simulation of a RC circuit shows a capacitor charging through a resistor of resistance 47kΩ. 
             You need the capacitor to reach 75% of its final value within 15ms. What value of capacitance can be chosen?`,
-            answer: "0.22",
+            answer: {
+                from: "0.46",
+                to: "0.47"
+            },
             unit: "X 10^-6 F"
         },
         {
@@ -103,7 +112,7 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
             question: `A voltage divider uses R1 = 82 kΩ and R2 = 18 kΩ to scale 15V down to a lower voltage. 
             The divider output is connected to a sensor whose input resistance is 22 kΩ. 
             What voltage appears   across   the   sensor   input,   considering   the   loading   effect?`,
-            answer: "2.3",
+            answer: "1.61",
             unit: "V"
         },
         {
@@ -111,7 +120,10 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
             type: "Numerical",
             question: `A MOSFET put under test at switching a 2A load, is observed to have a duty cycle of 60%. 
             Given that Rds(ON) = 77mΩ, evaluate the average conduction loss.`,
-            answer: "184.8",
+            answer: {
+                from: "184.0",
+                to: "185.0"
+            },
             unit: "mW"
         },
         {
@@ -126,17 +138,16 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
 (iv)	Faulty clock buffer causing duty cycle distortion
 `,
             options: ["only (i) and (iii)", "only (ii) and (iii)", "(i), (ii), (iii), and (iv)", "None of the above"],
-            answer: "(i), (ii), (iii), and (iv)"
+            answer: "only (i) and (iii)"
         },
         {
             id: "12",
             type: "Numerical",
-            title: "Consider the circuit shown below:",
-            // image: question22, // Image missing in assets
-            descr: `At 1kHz frequency, you want the amplitude of output voltage to be ~0.707 times the i/p voltage. 
-            To achieve this condition, what value of capacitance can be used? Given R = 11kΩ.`,
-            answer: "14.47",
-            unit: "×10^-9 F"
+            question: `A necessity occurs while working in PCB layout editor, 
+            where a 100 mm long copper trace has a uniform width of 0.3 mm is to be used. 
+            The resistivity of copper is around ~0.5 m Ω/sq. Determine the equivalent resistance of the trace routed over there.`,
+            answer: "167",
+            unit: "mΩ"
         },
         {
             id: "13",
@@ -145,7 +156,10 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
             image: question24,
             descr: `Configured to act as an astable multi-vibrator. 
             Given that, R2 = 3.3kΩ, C1 = 0.1uF, TOFF = 22ms, T = 90ms, determine the value of R1.`,
-            answer: "17.4",
+            answer: {
+                from: 6.7,
+                to: 6.8
+            },
             unit: "kΩ"
         },
         {
@@ -164,7 +178,7 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
             image: question28,
             descr: `Given that Vrms = 12V at 100Hz, and RL = 1.1kΩ determine the minimum value of filter 
             capacitance such that ripples <= 0.8V at load current.`,
-            answer: "67.5",
+            answer: "110",
             unit: "×10^-6 F"
         },
         {
@@ -183,7 +197,10 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
             image: question22,
             descr: `At 1kHz frequency, you want the amplitude of output voltage to be ~0.707 times the i/p voltage. 
             To achieve this condition, what value of capacitance can be used? Given R = 11kΩ.`,
-            answer: "14.47",
+            answer: {
+                from: "14.0",
+                to: "15.0"
+            },
             unit: "×10^-9 F"
         },
         {
@@ -193,7 +210,7 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
             image: question19,
             descr: `The GPIO pin is observed to be randomly reading HIGH or LOW. Why?`,
             options: ["Divider ratio wrong", "MCU pin is open-drain", "High impedance, susceptible to noise", "Tolerances mismatched"],
-            answer: ""
+            answer: "High impedance, susceptible to noise"
         },
         {
             id: "19",
@@ -201,7 +218,7 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
             question: `In a microcontroller’s UART part, the Tx and Rx is connected via a 10kΩ series resistor. It is observed that the communication fails intermittently. What is the reason behind this?`,
             options: ["Baud rate too low", "Series resistor too large, thus signal edges slow down",
                 "Tx polarity inversed", "Wrong parity configuration"],
-            answer: ""
+            answer: "Series resistor too large"
         },
         {
             id: "20",
@@ -209,18 +226,18 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
             question: `Comparator input crosses threshold very slowly due to RC. But output rapidly toggles HIGH/LOW several times. Why this occurs?`,
             options: ["No hysteresis (Schmitt trigger not used)", "Comparator output impedance too high",
                 "High input capacitance", "Long wires causing inductive kick"],
-            answer: ""
+            answer: "No hysteresis (Schmitt trigger not used)"
         },
         {
             id: "21",
             type: "MCQ",
             title: "",
-            image: question19,
+            image: question16,
             descr: `Here Vin = 12V, Vout = 5V, Cin = 0.1uF, Cout = 100uF
             The output oscillates at ~20kHz. What is the reason behind this?`,
             options: ["Input side capacitor undervaluedg", "Output capacitor ESR too high", "Load too heavy",
                 "LM7805 installed backwards", "Missing small ceramic capacitor on output"],
-            answer: ""
+            answer: "Missing small ceramic capacitor on output"
         },
         {
             id: "22",
@@ -230,7 +247,7 @@ Reason (R): Large loop area increases the probability of shoot-through events.`,
             and Vin is a sine wave of very small amplitude.`,
             options: ["Input offset voltage too high", "Rf is too large",
                 "Op-amp has asymmetric output swing capability", "Rin is too small"],
-            answer: ""
+            answer: "Op-amp has asymmetric output swing capability"
         },
         {
             id: "23",
@@ -240,7 +257,7 @@ Which reason is most appropriate?
 `,
             options: ["Rotor magnets demagnetized on phase-A only", "Back EMF absent → current spikes concentrated on one leg",
                 "Motor coils saturate on only one phase", "Shunt resistor on phase-A has lower tolerance", "Phase-A MOSFET has higher Rds(on) only at low currents"],
-            answer: ""
+            answer: "Back EMF absent → current spikes concentrated on one leg"
         },
         {
             id: "24",
@@ -253,7 +270,7 @@ Consider the following statements, and select which combination explains the flu
 `,
             options: ["(ii) and (iii) only", "(i) and (iii) only",
                 "(i), (ii), and (iii)", "(i) and (ii) only"],
-            answer: ""
+            answer: "(i), (ii), and (iii)"
         },
         {
             id: "25",
@@ -266,7 +283,7 @@ Consider the following statements, and select which combination explains the flu
 `,
             options: ["(i) and (ii) only", "(iv) only",
                 "(i), (ii), and (iv) only", "(i) only", "(ii) and (iii) only"],
-            answer: ""
+            answer: "(i), (ii), and (iv) only"
         },
         {
             id: "26",
@@ -276,7 +293,7 @@ Consider the following statements, and select which combination explains the flu
             Which is the BEST explanation?`,
             options: ["Transistor hFE is too low", "MCU reset pin floating",
                 "Flyback diode reversed", "Diode too far from the coil"],
-            answer: ""
+            answer: "MCU reset pin floating"
         },
         {
             id: "27",
@@ -291,7 +308,7 @@ Consider the following statements, and select which combination explains the flu
 `,
             options: ["(i), (ii), and (iii) only", "(ii) and (iv) only",
                 "(i) and (iii) only", "None of these", "(i) only"],
-            answer: ""
+            answer: "(i) only"
         },
         {
             id: "28",
@@ -307,64 +324,64 @@ Consider the following statements, and select which combination explains the flu
 `,
             options: ["(i), (ii), and (iii)", "only (ii) and (iv)",
                 "(ii), (iii) and (iv)", "only (i) and (ii)", "None of these"],
-            answer: ""
+            answer: "(i), (ii), and (iii)"
         },
         {
             id: "29",
             type: "MCQ",
             title: "Consider the given PCB scenario:",
-            image: question8,
+            image: question20,
             descr: `DRC does not show any error but PCB does not work. If not working, 
             why the ERC/DRC did not show any error?
 `,
             options: ["Footprint library outdated", "Pin functions not mapped to electrical types",
                 "KiCad cannot detect polarity mismatches", "Symbol pin numbers and footprint pins can differ without DRC flags"],
-            answer: ""
+            answer: "Symbol pin numbers and footprint pins can differ without DRC flags"
         },
         {
             id: "30",
             type: "MCQ",
             title: "Consider the following scenario:",
-            image: question3,
+            image: question4,
             descr: `Which of the following reason(s) best explain(s) the above cause?`,
             options: ["Forward voltage of diode changes rapidly with temperature", "High resistor value makes circuit sensitive to noise pickup",
                 "Source supply is unstable", "Diode is damaged"],
-            answer: ""
+            answer: "High resistor value makes circuit sensitive to noise pickup"
         },
         {
             id: "31",
             type: "MCQ",
             question: `The photodiodes produced noisy voltage readings (0.4V–3.8V). Based on the described PCB behaviour, which is the most likely root cause?`,
             options: ["No pull-up resistors used on the ADC pins", "IR LEDs were underpowered", "Sensor ground shared a long thin trace with motor current return", "Arduino ADC sampling rate was too high"],
-            answer: ""
+            answer: "Sensor ground shared a long thin trace with motor current return"
         },
         {
             id: "32",
             type: "MCQ",
             question: `Arduino resets when both motors run at full speed. What parameter did the team most likely miscalculate?`,
             options: ["The dropout voltage of the 7805 regulator", "The required gate charge for the MOSFETs", "The resistor values for the IR LED current", "The ADC resolution (10-bit) mapping"],
-            answer: ""
+            answer: "The dropout voltage of the 7805 regulator"
         },
         {
             id: "33",
             type: "MCQ",
             question: `Each IR LED was given a 220 Ω resistor at 5V. Typical IR LED forward voltage is 1.2V and safe current is 20 mA. What LED current did they unknowingly drive?`,
             options: ["8 mA", "12 mA", "17 mA", "25 mA"],
-            answer: ""
+            answer: "17 mA"
         },
         {
             id: "34",
             type: "MCQ",
             question: `The IR LED–photodiode pair was routed next to motor traces carrying rapidly switching current. Which effect causes false triggering?`,
             options: ["High output impedance of Arduino pins", "Capacitive and inductive coupling into high-impedance analog node", "Diode reverse recovery noise", "Photodiode saturation at low frequency"],
-            answer: ""
+            answer: "Capacitive and inductive coupling into high-impedance analog node"
         },
         {
             id: "35",
             type: "MCQ",
             question: `ERC showed that logic 5V and motor supply 9V shared unlabeled power nets. Why is this dangerous?`,
             options: ["It prevents ground plane formation", "It creates a possibility of connecting 9V directly to 5V rail", "It stops the board from generating Gerber files", "It forces microcontroller pins to operate at 3.3V"],
-            answer: ""
+            answer: "It creates a possibility of connecting 9V directly to 5V rail"
         }
 
     ];
@@ -493,28 +510,42 @@ Consider the following statements, and select which combination explains the flu
             if (q.type.toLowerCase() === "mcq") {
                 // MCQ: +1 for correct, -0.25 for wrong
                 if (userAnswer === q.answer) {
-                    // console.log(`Q${q.id} Correct. Ans: ${userAnswer}`);
                     totalScore += 1;
                 } else {
-                    // console.log(`Q${q.id} Wrong. Got: ${userAnswer}, Expected: ${q.answer}`);
                     totalScore -= 0.25;
                 }
             } else {
                 // Numerical: +2.5 for correct
                 const userVal = parseFloat(userAnswer);
-                const correctVal = parseFloat(q.answer);
 
                 // Check if valid number
-                if (!isNaN(userVal) && !isNaN(correctVal)) {
-                    if (Math.abs(userVal - correctVal) < 0.1) { // 0.1 tolerance
-                        // console.log(`Q${q.id} Numerical Correct. Got: ${userVal}`);
-                        totalScore += 2.5;
+                if (!isNaN(userVal)) {
+                    let isCorrect = false;
+
+                    // Check if answer is a range (object with from/to) or single value
+                    if (typeof q.answer === 'object' && q.answer.from !== undefined && q.answer.to !== undefined) {
+                        // Range-based answer
+                        const minVal = parseFloat(q.answer.from);
+                        const maxVal = parseFloat(q.answer.to);
+
+                        if (!isNaN(minVal) && !isNaN(maxVal)) {
+                            // Check if user's answer falls within the range (inclusive)
+                            isCorrect = userVal >= minVal && userVal <= maxVal;
+                        }
                     } else {
-                        // console.log(`Q${q.id} Numerical Wrong. Got: ${userVal}, Expected: ${correctVal}`);
-                        // No negative marking for numericals? Assuming 0 for now as per previous logic.
-                        // If you want negative marking for numericals, uncomment below:
-                        // totalScore -= 0.25; 
+                        // Single value answer (with tolerance)
+                        const correctVal = parseFloat(q.answer);
+
+                        if (!isNaN(correctVal)) {
+                            // Use 0.1 tolerance for single values
+                            isCorrect = Math.abs(userVal - correctVal) < 0.1;
+                        }
                     }
+
+                    if (isCorrect) {
+                        totalScore += 2.5;
+                    }
+                    // No negative marking for numerical questions
                 }
             }
         });
