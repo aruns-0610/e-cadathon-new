@@ -390,7 +390,7 @@ Consider the following statements, and select which combination explains the flu
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [answers, setAnswers] = useState({});
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [timeLeft, setTimeLeft] = useState(10 * 60); // 10 minutes in seconds
+    const [timeLeft, setTimeLeft] = useState(90 * 60); // 90 minutes in seconds
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isDisqualified, setIsDisqualified] = useState(false);
     const [showFullscreenWarning, setShowFullscreenWarning] = useState(false);
